@@ -1,0 +1,64 @@
+<div class="row py-5">
+    <div class="col-md-7">
+        <form [formGroup]="checkoutForm" class=" m-auto myForm">
+            <h2 class="text-main">Billing details</h2>
+            <!-- <div class="alert alert-danger" *ngIf="errMsg">
+                <p class="m-0">{{errMsg}}</p>
+            </div> -->
+            <input type="text" placeholder="Address" formControlName="details" class="form-control"
+                [class.err]="checkoutForm.get('details')?.errors && checkoutForm.get('details')?.touched">
+            <ul *ngIf="checkoutForm.get('details')?.errors && checkoutForm.get('details')?.touched">
+                <li *ngIf="checkoutForm.get('details')?.getError('required')">This feild is required</li>
+            </ul>
+        
+            <input type="text" placeholder="City" formControlName="city" class="form-control"
+                [class.err]="checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched">
+            <ul *ngIf="checkoutForm.get('city')?.errors && checkoutForm.get('city')?.touched">
+                <li *ngIf="checkoutForm.get('city')?.getError('required')">This feild is required</li>
+            </ul>
+        
+        
+            <input type="tel" placeholder="Phone" formControlName="phone" class="form-control"
+                [class.err]="checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched">
+            <ul *ngIf="checkoutForm.get('phone')?.errors && checkoutForm.get('phone')?.touched">
+                <li *ngIf="checkoutForm.get('phone')?.getError('required')">This feild is required</li>
+                <li *ngIf="checkoutForm.get('phone')?.getError('pattern')">Enter a valid Egyptian number</li>
+            </ul>
+        
+            <button [disabled]="checkoutForm.invalid" class="btn text-white" (click)="handleCheckout(checkoutForm)">
+                <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+                Place order
+            </button>
+        </form>
+    </div>
+    <div class="col-md-5">
+        <div class="cartItems py-4 px-2">
+
+            <div class="loadingOverlay" *ngIf="isLoading">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+            <h3 class="text-main">Your order</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">Product</th>
+                        <th scope="col">Subtotal</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let product of cartItems?.products">
+                        <td><img [src]="product.product.imageCover" [alt]="product.product.title" width="50" height="50"
+                                class="img-fluid"> {{product.product.title|getTwoWords}}</td>
+                        <td class="text-second">{{product.price|currency}}</td>
+                    </tr>
+                    <tr>
+                        <td class="fs-4 py-3">Total</td>
+                        <td class="text-second fs-5">{{cartItems?.totalCartPrice|currency}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

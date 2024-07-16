@@ -1,0 +1,67 @@
+<div class="py-5 w-100 position-relative">
+    <div class="loadingOverlay" *ngIf="isLoading">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+    <div *ngIf="wishlistEmpty" class="w-100 m-auto">
+        <div colspan="6" class="text-center fs-5">
+            <i class="fas fa-bag-shopping fa-10x d-block py-3"></i>
+            <span class="text-dark">Wishlist is empty!</span>
+        </div>
+    </div>
+    <table>
+        <thead *ngIf="!wishlistEmpty">
+            <tr>
+                <th scope="col"></th>
+                <th scope="col"></th>
+                <th scope="col">Product</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="!wishlistEmpty">
+            <tr *ngFor="let product of wishlistItems; let i = index">
+                <td><i class="fas fa-close fa-sm text-second" (click)="confirmDeletItem(product._id)" ></i></td>
+                <td><img [src]="product.imageCover" [alt]="product.title" width="50" height="50"
+                        class="img-fluid"></td>
+                <td>{{product.title|getTwoWords}}</td>
+                <td>
+                    <div class="rate">
+                        <i *ngFor="let i of [0,1,2,3,4]; let index=index" class="fas fa-star fa-sm star-color"
+                            [class.star-color]="index < (product.ratingsAverage|parseInt)"></i>
+                    </div>
+                </td>
+                <td class="text-second fw-bold">{{product.price|currency}}</td>
+                <td><a class="bg-main text-white text-center py-2 px-4" (click)="handleAddToCart(product._id,i)">
+                    <i class="fas fa-spinner fa-spin" *ngIf="addToCartLoading[i]"></i>
+                    Add to cart
+                </a></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="card flex justify-content-center">
+    <p-confirmDialog #cd>
+        <ng-template pTemplate="headless" let-message>
+            <div class="d-flex flex-column align-items-center p-5 surface-overlay border-round">
+                <div
+                    class="border-circle bg-danger inline-flex justify-content-center align-items-center h-6rem w-6rem">
+                    <i class="fas fa-question text-5xl"></i>
+                </div>
+                <span class="font-bold text-2xl block mb-2 mt-4">
+                    {{ message.header }}
+                </span>
+                <p class="mb-0">{{ message.message }}</p>
+                <div class="d-flex align-items-center gap-2 mt-4">
+                    <button pButton label="Yes, sure" (click)="cd.accept()" class="w-8rem border-danger bg-danger">
+                    </button>
+                    <button pButton label="Cancel" (click)="cd.reject()" class="p-button-outlined w-8rem ">
+                    </button>
+                </div>
+            </div>
+        </ng-template>
+    </p-confirmDialog>
+</div>

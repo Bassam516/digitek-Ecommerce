@@ -1,0 +1,83 @@
+<div class="row py-5 vh-100" *ngIf="isLoading">
+    <div class="col-md-6">
+        <div class="row h-100">
+            <div class="col-md-3">
+                <ul class="list-unstyled h-75">
+                    <li class="h-25 mb-2"><p-skeleton width="100%" height="100%" styleClass="mr-2" /></li>
+                    <li class="h-25 mb-2"><p-skeleton width="100%" height="100%" styleClass="mr-2" /></li>
+                    <li class="h-25 mb-2"><p-skeleton width="100%" height="100%" styleClass="mr-2" /></li>
+                    <li class="h-25 mb-2"><p-skeleton width="100%" height="100%" styleClass="mr-2" /></li>
+                </ul>
+            </div>
+            <div class="col-md-9" style="height: 80%">
+                <p-skeleton width="100%" height="100%" styleClass="mr-2" />
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <p-skeleton width="75%" height="1.5rem" styleClass="mr-2" />
+        <p-skeleton width="25%" styleClass="my-2" />
+        <p-skeleton width="4rem" height="2rem" styleClass="my-2" />
+        <div class="w-100 flex">
+            <p-skeleton width="25%" styleClass="my-2" />
+            <p-skeleton width="70%" styleClass="my-2"  />
+        </div>
+        <p-skeleton width="8rem" height="3rem" styleClass="my-2" />
+        <p-skeleton width="25%" styleClass="my-2" />
+        <p-skeleton width="60%" styleClass="my-2" />
+        <p-skeleton width="40%" styleClass="my-2" />
+    </div>
+</div>
+
+<div class="row py-5">
+    <div class="col-md-6">
+        <div>
+            <p-galleria [value]="images.value" numVisible="4" thumbnailsPosition="left"  [showIndicators]="false" [showItemNavigatorsOnHover]="true" [showItemNavigators]="true" [responsiveOptions]="responsiveOptions" [containerStyle]="{ 'max-width': '640px' }" >
+                <ng-template pTemplate="item" let-item>
+                    <img [src]="item.itemImageSrc" style="width: 100%; display: block;" />
+                </ng-template>
+                <ng-template pTemplate="thumbnail" let-item>
+                    <div class="grid grid-nogutter justify-content-center">
+                        <img [src]="item.thumbnailImageSrc" style="display: block;" />
+                    </div>
+                </ng-template>
+            </p-galleria>
+        </div>
+
+    </div>
+    <div class="col-md-6 d-flex align-items-center">
+        <div class="right-side">
+            <h2>{{product?.title}}</h2>
+            <div class="rate">
+                <i *ngFor="let i of [0,1,2,3,4]; let index=index" class="fas fa-star fa-sm star-color"
+                    [class.star-color]="index < (product?.ratingsAverage|parseInt)"></i>
+            </div>
+            
+            <h3>{{product?.price|currency}}</h3>
+            <h6 class="highlight">Highlights: <span class="text-secondary">{{product?.description}}</span></h6>
+            
+            <a class="bg-main text-white py-2 px-4" (click)="handleAddToCart(product?._id)">
+                <span *ngIf="!addLoading">Add To Cart</span>
+                <i class="fas fa-spinner fa-spin" *ngIf="addLoading"></i>
+            </a>
+
+            <a class="addToWishlist" (click)="handleAddToWishlist(product?._id)">
+                <i class="far fa-heart fa-sm" *ngIf="!addToWishlistLoading && !wishlistProductsIds.includes(product?._id)"></i>
+                <i class="fas fa-check" *ngIf="wishlistProductsIds.includes(product?._id)"></i>
+                <i class="fas fa-spinner fa-spin" *ngIf="addToWishlistLoading"></i>
+                <span>Add To wishlist</span>
+            </a>
+            
+            <h6>Categories: <span>{{product?.category?.name}} <span *ngFor="let subcategory of product?.subcategory">,{{subcategory.name}}</span></span></h6>
+            
+            <div class="d-flex justify-content-between align-items-center w-25 share">
+                <h6>Share:</h6>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-telegram"></i></a>
+                <a href="#"><i class="fab fa-pinterest-p"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

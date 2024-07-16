@@ -1,1 +1,181 @@
 /* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap");
+@import "ngx-toastr/toastr";
+@import "primeng/resources/themes/lara-light-blue/theme.css";
+@import "primeng/resources/primeng.css";
+
+$main-color: #1558e5;
+$second-color: #dd3333;
+$main-transition: all 0.3s ease-in-out;
+$star-color: #ff9f00;
+
+::selection {
+  background-color: #cf2e2e;
+  color: #fff;
+}
+
+body {
+  font-family: "Nunito", sans-serif;
+}
+
+.otp-input .my-super-class {
+  width: 60px !important;
+  border-radius: 0 !important;
+  border-color: $main-color !important;
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: #000;
+}
+.bg-main {
+  background-color: $main-color;
+}
+.text-main {
+  color: $main-color;
+}
+.text-second{
+  color: $second-color;
+}
+
+form.myForm {
+  box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
+  padding: 40px 30px;
+
+  input {
+    margin: 15px 0;
+    width: 100%;
+    border-radius: 0 !important;
+
+    &:focus {
+      box-shadow: none !important;
+    }
+  }
+  button {
+    width: 100% !important;
+    border-radius: 0 !important;
+    transition: all 0.3s ease-in-out !important;
+    text-transform: uppercase !important;
+    background-color: $main-color !important;
+    &:hover {
+      background-color: transparent !important;
+      color: $main-color !important;
+      border: 1px solid $main-color !important;
+    }
+  }
+  li {
+    color: red;
+  }
+
+  .err {
+    border: 1px solid red;
+  }
+
+  .showPassword {
+    position: relative;
+
+    i {
+      position: absolute;
+      top: calc(50% - 8px);
+      right: 20px;
+      color: $main-color;
+      cursor: pointer;
+    }
+  }
+}
+
+.rate {
+  i {
+    color: #e6e6e6;
+  }
+}
+
+.star-color {
+  color: $star-color !important;
+}
+
+.p-galleria-thumbnails-left p-galleriathumbnails{
+  width: 25%;
+}
+.p-galleria-content{
+  justify-content: space-evenly;
+}
+.p-galleria-item{
+  border: 1px solid #eee;
+}
+
+.p-galleria-thumbnail-item{
+  overflow: hidden;
+  border: 1px solid #eee;
+  margin-bottom: 5px ;
+}
+
+.p-galleria-thumbnails-left {
+  .p-galleria-thumbnail-wrapper{
+    background-color: #000;
+    button{
+      display: none;
+    }
+
+    .p-galleria-thumbnail-container{
+      
+      background-color: #fff;
+      padding: 0;
+
+    }
+
+    .p-galleria-thumbnail-items-container{
+      height: 500px !important;
+    }
+    img{
+    width: 160px !important;
+    height: 160px !important;
+  }
+
+  }
+
+  img{
+    height: 500px !important;
+    width: 100% !important;
+  }
+
+  .p-icon{
+    color: #00000058;
+  }
+  
+
+}
+
+.scrollTop{
+  background-color: $second-color;
+}
+
+.p-tooltip-text{
+  background-color: #000;
+  padding: 5px;
+  border-radius: 0;
+  font-size: 12px;
+}
+.p-tooltip-arrow{
+  border-color: #000 transparent transparent transparent;
+}
+.Wishlist{
+  .p-tooltip-arrow{
+    border-color: transparent transparent transparent #000   ;
+  }
+}
+
+
+.p-dialog{
+    background-color: #fff;
+    text-align: center;
+    border-radius: 0;
+}
+.p-skeleton{
+  border-radius: 0;
+}
+
+.p-skeleton-circle{
+  border-radius: 50%;
+}

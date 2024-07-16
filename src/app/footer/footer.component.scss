@@ -1,0 +1,37 @@
+footer{
+    background:url('../../../public/images/footer-bg.webp') no-repeat center;
+    background-size: cover;
+    color: #fff;
+    padding-block: 60px;
+
+    p{
+        margin: 20px 0;
+    }
+
+    ul{
+        li{
+            margin: 20px 0;
+        }
+    }
+
+    ul.d-flex{
+        width: 70%;
+        a{
+            li{
+                background-color: #000;
+                padding: 7px 10px;
+                &:hover{
+                    opacity: 0.5;
+                }
+            }
+        }
+    }
+
+    h5{
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+    a{
+        color: #fff;
+    }
+}

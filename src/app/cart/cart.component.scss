@@ -1,0 +1,128 @@
+ .loadingOverlay{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* background-color: #ffffff6f; */
+    background-color: #fff;
+    z-index: 999;
+
+    .spinner-border{
+        width: 70px;
+        height: 70px;
+        border-block-color: #b8b8b8;
+        border-left-color: #b8b8b8;
+    }
+}
+.cartItems{
+    box-shadow: 0 0 10px rgba(0,0,0,0.12);
+    position: relative;
+
+
+    table{
+        font-weight: 700;
+        width: 100%;
+
+        i.fa-close{
+            cursor: pointer;
+        }
+
+        th{
+            padding: 20px 15px;
+        }
+        td{
+            border-block: 1px solid #eee;
+            padding: 15px;
+        }
+
+        .count{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 91px;
+
+
+            button{
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                width: 25px;
+                height: 25px;
+                text-align: center;
+                font-weight: 700;
+                font-size: 18px;
+                border: 1px solid #eee;
+                outline: none;
+                background-color: transparent;
+            }
+            button:disabled{
+                cursor: not-allowed;
+            }
+
+            span{
+                border: 1px solid #eee;
+                padding: 0 15px;
+                display: inline-block;
+                height: 100%;
+            }
+        }
+    }
+
+    .clearCart{
+        border-radius: 0;
+        padding: 5px 20px ;
+        font-size: 20px;
+        font-weight: 700;
+    }
+}
+.cartTotal{
+    position: relative;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.12);
+
+    ul{
+        padding: 15px 0;
+        margin: 0;
+        font-weight: 700;
+    }
+
+    .subtotal{
+        border-bottom: 1px solid #eee;
+    }
+
+    a{
+        opacity: 0.8;
+        transition: all 0.3s ease-in-out;
+        &:hover{
+            opacity: 1;
+        }
+    }
+}
+
+.card{
+    
+    .border-circle{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 70px;
+        height: 70px;
+        border-radius: 50%;
+        background-color: rgb(162, 0, 0);
+
+        i{
+            color: #fff;
+            font-size: 30px;
+        }
+
+        span.font-bold{
+            font-weight: 700;
+            color: #1e1e1e;
+
+        }
+    }
+}

@@ -1,0 +1,37 @@
+
+<div class="verifyForm w-50 m-auto my-4">
+    <h2 class="text-main">Verify Reset Code</h2>
+    <p class="">We have sent you a confirmation code to your email <span class="text-main">"{{userEmail}}"</span>. If you did not get it, <a class="text-main" (click)="resendCode()">Resend Code</a> <i class="fas fa-spinner fa-spin text-main" *ngIf="isLoadingResend"></i></p>
+    <!-- <div class="alert alert-danger" *ngIf="errMsg">
+        <p class="m-0">{{errMsg}}</p>
+    </div>
+     -->
+    <ngx-otp-input class="otp-input" [config]="otpInputConfig" (otpChange)="handeOtpChange($event)" (fill)="handleFillEvent($event)">
+    </ngx-otp-input>
+    
+    <button [disabled]="inputVal.value == null" class="btn text-white" (click)="verifyResetCode()">
+        <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+        Verify Code
+    </button>
+</div>
+
+<!-- <form [formGroup]="verifyResetCodeForm" class="w-50 m-auto my-4">
+    <h2 class="text-main">Verify Reset Code</h2>
+    <div class="alert alert-danger" *ngIf="errMsg">
+        <p class="m-0">{{errMsg}}</p>
+    </div>
+
+    <input type="text" [value]="inputVal" placeholder="Reset Code" formControlName="resetCode" class="form-control"
+        [class.err]="verifyResetCodeForm.get('resetCode')?.errors && verifyResetCodeForm.get('resetCode')?.touched">
+
+    <ul *ngIf="verifyResetCodeForm.get('resetCode')?.errors && verifyResetCodeForm.get('resetCode')?.touched">
+        <li *ngIf="verifyResetCodeForm.get('resetCode')?.getError('required')">This feild is required</li>
+        <li *ngIf="verifyResetCodeForm.get('resetCode')?.getError('maxLength')">length is 6</li>
+        <li *ngIf="verifyResetCodeForm.get('resetCode')?.getError('minLength')">length is 6</li>
+    </ul>
+
+    <button [disabled]="verifyResetCodeForm.invalid" class="btn text-white" (click)="verifyResetCode(verifyResetCodeForm)">
+        <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+        Verify Code
+    </button>
+</form> -->

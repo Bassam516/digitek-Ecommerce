@@ -1,0 +1,12 @@
+{
+    "scss.format.enable": false,
+    "scss.completion.triggerPropertyValueCompletion": false,
+    "scss.lint.argumentsInColorFunction": "error",
+    "scss.lint.hexColorLength": "ignore",
+    "scss.lint.unknownAtRules": "ignore",
+    "scss.lint.unknownProperties": "ignore",
+    "css.lint.unknownAtRules": "ignore",
+    "css.lint.fontFaceProperties": "ignore",
+    "css.lint.hexColorLength": "ignore",
+    "css.lint.unknownProperties": "ignore"
+}

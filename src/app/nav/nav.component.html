@@ -1,0 +1,135 @@
+<div class=" upperNav bg-black text-white py-2">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <p>Enjoy a safe, convenient shopping experience.</p>
+            <p><i class="fas fa-phone fa-sm mx-1"></i> +(585) 123 4567</p>
+        </div>
+    </div>
+</div>
+<div class="centerNav bg-black text-white py-4">
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center">
+            <img src="images/logo.png" alt="logo" class="img-fluid">
+            <div class="search d-flex">
+                <input type="text" placeholder="Search for products" class="form-control">
+                <i class="fas fa-search"></i>
+            </div>
+            <ul class="userData list-unstyled d-flex justify-content-between align-items-center">
+                <a routerLink="/userAccount">
+                    <li>
+                        <i class="far fa-user"></i>
+                        <span>My Account</span>
+                    </li>
+                </a>
+                <a routerLink="/wishlist">
+                    <li>
+                        <i class="far fa-heart" pBadge [value]="wishlistItemsNum" severity="danger"></i>
+                        <span>Wishlist</span>
+                    </li>
+                </a>
+                <a (click)="getCartData()">
+                    <li>
+                        <i class="fas fa-cart-shopping" pBadge [value]="cartItemsNum" severity="danger"></i>
+                        <span>Cart</span>
+                    </li>
+                </a>
+            </ul>
+        </div>
+    </div>
+</div>
+<nav class="navbar navbar-expand-sm navbar-dark bg-black">
+    <div class="container">
+        <div class="categories text-white d-flex justify-content-between" *ngIf="isLogin">
+            <p>Shopping By Categories</p>
+            <span class="navbar-toggler-icon"></span>
+            <ul class="list-unstyled">
+                <li *ngFor="let categorie of categories">{{categorie.name}}</li>
+            </ul>
+        </div>
+        <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
+            data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavId">
+            <ul class="navbar-nav navList me-auto mt-2 mt-lg-0" *ngIf="isLogin">
+
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="home">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="shop">Shop</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="products">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" routerLink="contact">Contact</a>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+
+                <li class="nav-item" *ngIf="!isLogin">
+                    <a class="nav-link" routerLink="login">Login</a>
+                </li>
+                <li class="nav-item" *ngIf="!isLogin">
+                    <a class="nav-link" routerLink="register">SignUp</a>
+                </li>
+                <li class="nav-item" *ngIf="isLogin">
+                    <a class="nav-link" (click)="handleLogout()">SignOut</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<p-sidebar [(visible)]="sidebarVisible" position="right">
+    <h3>Shopping cart</h3>
+    <div class="text-center" *ngIf="cartEmpty">
+        <i class="fas fa-bag-shopping fa-10x py-4"></i>
+        <h6>Shopping cart is empty!</h6>
+    </div>
+    <div class="cartItems" *ngIf="!cartEmpty">
+        <div class="loadingOverlay" *ngIf="isLoading">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>
+        <div *ngFor="let item of cartItems?.products" class="cartItem">
+            <div class="row">
+                <div class="col-md-3">
+                    <img [src]="item.product.imageCover" [alt]="item.product.title" class="img-fluid">
+                </div>
+                <div class="col-md-7">
+                    <h6>{{item.product.title}}</h6>
+                    <ul class="count list-unstyled">
+                        <li><button [disabled]="item.count == 1" class="text-main"
+                                (click)="handleUpdateProductCount(item.product._id, item.count - 1)">-</button></li>
+                        <li><span class="text-main">{{item.count}}</span></li>
+                        <li><button class="text-main"
+                                (click)="handleUpdateProductCount(item.product._id, item.count + 1)">+</button>
+                        </li>
+                    </ul>
+                    <h6><span class="text-black">{{item.count}}x</span>{{item.price|currency}}</h6>
+                </div>
+                <div class="col-md-2">
+                    <i class="fas fa-close fa-sm" (click)="handleDeleteCartItem(item.product._id)"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sidebar-footer" *ngIf="!cartEmpty">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4>Total:</h4>
+            <span class="text-second fs-4">{{totalCartPrice|currency}}</span>
+        </div>
+        <a routerLink="/cart" class="bg-main text-white py-2 text-center" (click)="sidebarVisible = false">View cart</a>
+        <a [routerLink]="['/checkout', cartId]" class="bg-main text-white py-2 text-center"
+            (click)="sidebarVisible = false">Checkout</a>
+    </div>
+</p-sidebar>

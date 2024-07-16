@@ -1,0 +1,30 @@
+<form [formGroup]="loginForm" class="w-50 m-auto my-4 myForm">
+    <h2 class="text-main">Login Now</h2>
+    <!-- <div class="alert alert-danger" *ngIf="errMsg">
+        <p class="m-0">{{errMsg}}</p>
+    </div> -->
+
+    <input type="email" placeholder="Email" formControlName="email" class="form-control"
+        [class.err]="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+    <ul *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched">
+        <li *ngIf="loginForm.get('email')?.getError('required')">This feild is required</li>
+    </ul>
+
+    <div class="showPassword">
+        <input [type]="showPassword == true?'text':'password'" placeholder="Password" formControlName="password"
+            class="form-control"
+            [class.err]="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+        <i *ngIf="!showPassword" (click)="showPassword = true" class="fas fa-eye main-color cursor-pointer"></i>
+        <i *ngIf="showPassword" (click)="showPassword = false" class="fas fa-eye-slash main-color cursor-pointer"></i>
+    </div>
+    <ul *ngIf="loginForm.get('password')?.errors && loginForm.get('password')?.touched">
+        <li *ngIf="loginForm.get('password')?.getError('required')">This feild is required</li>
+    </ul>
+
+    <a routerLink="/forgetpassword" routerLinkActive="router-link-active"  class="my-3 d-inline-block float-end">Forget Password ?</a>
+
+    <button [disabled]="loginForm.invalid" class="btn text-white" (click)="handleLogin(loginForm)">
+        <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+        Login
+    </button>
+</form>

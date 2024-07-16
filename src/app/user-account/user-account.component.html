@@ -1,0 +1,12 @@
+<div class="mt-4">
+    <h2 class="text-main">Hello, <span>{{userData.name}}</span></h2>
+    <p class="text-secondary">Name: {{userData.name}}</p>
+    <p class="text-secondary">Email: {{userData.email}}</p>
+    <div class="d-flex justify-content-center">
+        <p-button label="Change information" class="mx-2" [text]="true" [raised]="true" severity="primary" routerLink="changeInformation" />
+        <p-button label="Change password" [text]="true" [raised]="true" severity="primary" routerLink="changePassword" />
+    </div>
+</div>
+
+<router-outlet></router-outlet>
+

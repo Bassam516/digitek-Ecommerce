@@ -1,0 +1,67 @@
+$main-color: #1558e5;
+$second-color: #dd3333;
+$main-transition: all 0.3s ease-in-out;
+$star-color: #ff9f00;
+
+.right-side{
+    h2{
+        color: #1a1a1a;
+        font-weight: 900;
+    }
+    .rate{
+        margin: 20px 0;
+
+    }
+
+    h3{
+        margin: 20px 0;
+        font-weight: 700;
+    }
+    h6{
+        display: flex;
+        align-items: flex-start;
+        flex-wrap: nowrap;
+        font-weight: 900;
+        margin: 10px 0;
+        span{
+            font-weight: 500;
+        }
+    }
+    h6.highlight{
+        span{
+            padding-inline: 30px;
+        }
+    }
+    a{
+        display: inline-block;
+        font-size: 18px;
+        opacity: 0.8;
+        transition: $main-transition;
+        &:hover{
+            opacity: 1;
+        }
+    }
+    a.bg-main{
+        min-width: 145px;
+        text-align: center;
+    }
+    .addToWishlist{
+        display: block;
+        color: #000;
+        margin: 20px 0;
+        &:hover{
+            color: $main-color;
+        }
+    }
+    .share{
+        a{
+            color: #000;
+            opacity: 1;
+            transition: $main-transition;
+            margin: 0 10px;
+            &:hover{
+                color: $second-color;
+            }
+        }
+    }
+}

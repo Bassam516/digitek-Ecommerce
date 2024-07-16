@@ -1,0 +1,49 @@
+<form [formGroup]="registerForm" class="w-50 m-auto my-4 myForm">
+    <h2 class="text-main">Create An Account</h2>
+    <!-- <div class="alert alert-danger" *ngIf="errMsg">
+        <p class="m-0">{{errMsg}}</p>
+    </div> -->
+    <input type="text" placeholder="Name" formControlName="name" class="form-control" [class.err]="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+    <ul *ngIf="registerForm.get('name')?.errors && registerForm.get('name')?.touched">
+        <li *ngIf="registerForm.get('name')?.getError('required')">This feild is required</li>
+    </ul>
+    <input type="email" placeholder="Email" formControlName="email" class="form-control" [class.err]="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+    <ul *ngIf="registerForm.get('email')?.errors && registerForm.get('email')?.touched">
+        <li *ngIf="registerForm.get('email')?.getError('required')">This feild is required</li>
+        <li *ngIf="registerForm.get('email')?.getError('email')">Enter an valid email</li>
+    </ul>
+    
+    <div class="showPassword">
+        <input [type]="showPassword == true?'text':'password'" placeholder="Password" formControlName="password"
+            class="form-control" [class.err]="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+        <i *ngIf="!showPassword" (click)="showPassword = true" class="fas fa-eye main-color cursor-pointer"></i>
+        <i *ngIf="showPassword" (click)="showPassword = false" class="fas fa-eye-slash main-color cursor-pointer"></i>
+    </div>
+    <ul *ngIf="registerForm.get('password')?.errors && registerForm.get('password')?.touched">
+        <li *ngIf="registerForm.get('password')?.getError('required')">This feild is required</li>
+        <li *ngIf="registerForm.get('password')?.getError('pattern')">Password must have at least 8 char includs one of (special char, uppercase, number)</li>
+    </ul>
+
+    
+    <div class="showPassword">
+        <input [type]="showrePassword == true?'text':'password'" placeholder="Confirm Password" formControlName="rePassword"
+            class="form-control"
+            [class.err]="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
+        <i *ngIf="!showrePassword" (click)="showrePassword = true" class="fas fa-eye main-color cursor-pointer"></i>
+        <i *ngIf="showrePassword" (click)="showrePassword = false" class="fas fa-eye-slash main-color cursor-pointer"></i>
+    </div>
+    <ul *ngIf="registerForm.get('rePassword')?.errors && registerForm.get('rePassword')?.touched">
+        <li *ngIf="registerForm.get('rePassword')?.getError('required')">This feild is required</li>
+        <li *ngIf="registerForm.get('rePassword')?.getError('repasswordMatch')">password and confirm password doesnt matched</li>
+    </ul>
+
+    <input type="tel" placeholder="Phone" formControlName="phone" class="form-control" [class.err]="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+    <ul *ngIf="registerForm.get('phone')?.errors && registerForm.get('phone')?.touched">
+        <li *ngIf="registerForm.get('phone')?.getError('required')">This feild is required</li>
+        <li *ngIf="registerForm.get('phone')?.getError('pattern')">Enter a valid Egyptian number</li>
+    </ul>
+    <button [disabled]="registerForm.invalid" class="btn text-white" (click)="handleRegister(registerForm)">
+        <i class="fas fa-spinner fa-spin" *ngIf="isLoading"></i>
+        register
+    </button>
+</form>
